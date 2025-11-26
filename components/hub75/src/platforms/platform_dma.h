@@ -147,7 +147,7 @@ class PlatformDma {
    * @param h Height in pixels
    * @param buffer Pointer to pixel data (tightly packed, w*h pixels)
    * @param format Pixel format
-   * @param color_order Color component order (RGB or BGR, for RGB888_32 only)
+   * @param color_order Color component order (RGB or BGR, for RGB888_32 and RGB888 only)
    * @param big_endian True if buffer is big-endian
    *
    * This is the primary pixel drawing function. Single-pixel operations

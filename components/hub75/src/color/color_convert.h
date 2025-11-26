@@ -90,9 +90,15 @@ HUB75_IRAM inline void extract_rgb888_from_format(const uint8_t *buffer, size_t 
     case Hub75PixelFormat::RGB888: {
       // 24-bit packed RGB
       const uint8_t *p = buffer + (pixel_idx * 3);
-      r8 = p[0];
-      g8 = p[1];
-      b8 = p[2];
+      if (color_order == Hub75ColorOrder::RGB) {
+        r8 = p[0];
+        g8 = p[1];
+        b8 = p[2];
+      } else { // BGR
+        r8 = p[2];
+        g8 = p[1];
+        b8 = p[0];
+      }
       break;
     }
 

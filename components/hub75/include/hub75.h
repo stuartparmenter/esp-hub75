@@ -69,7 +69,7 @@ class Hub75Driver {
    * @param h Height in pixels
    * @param buffer Pointer to pixel data
    * @param format Pixel format (RGB888, RGB888_32, or RGB565)
-   * @param color_order Color component order (RGB or BGR, for RGB888_32 only)
+   * @param color_order Color component order (RGB or BGR, for RGB888_32 and RGB888 only)
    * @param big_endian True if buffer is big-endian (affects RGB565 and RGB888_32)
    *
    * Buffer stride is assumed to be w pixels (tightly packed rows).

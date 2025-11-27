@@ -94,7 +94,7 @@ HUB75_IRAM inline void extract_rgb888_from_format(const uint8_t *buffer, size_t 
         r8 = p[0];
         g8 = p[1];
         b8 = p[2];
-      } else { // BGR
+      } else {  // BGR
         r8 = p[2];
         g8 = p[1];
         b8 = p[0];

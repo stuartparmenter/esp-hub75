@@ -27,6 +27,7 @@ jobs:
       - name: Update version files
         run: |
           sed -i "s/\"version\": .*/\"version\": \"${{ steps.drafter.outputs.resolved_version }}\",/g" library.json
+          sed -i "s/^version = .*/version = \"${{ steps.drafter.outputs.resolved_version }}\"/" pyproject.toml
 
       - name: Commit changes
         run: |

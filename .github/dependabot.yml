@@ -13,6 +13,8 @@ updates:
     commit-message:
       prefix: "ci"
       include: "scope"
+    labels:
+      - "dependencies"
 
   - package-ecosystem: "uv"
     directory: "/"
@@ -21,11 +23,13 @@ updates:
       time: "06:00"
       timezone: "America/Los_Angeles"
     open-pull-requests-limit: 5
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    labels:
+      - "dependencies"
     groups:
       minor-and-patch:
         update-types:
           - "minor"
           - "patch"
-      major:
-        update-types:
-          - "major"

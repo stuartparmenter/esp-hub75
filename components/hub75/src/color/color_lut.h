@@ -194,8 +194,6 @@ static constexpr auto LUT = generate_gamma22_lut<HUB75_BIT_DEPTH>();
  *
  * @return Pointer to 256-entry LUT (uint16_t array)
  */
-HUB75_WARN_UNUSED inline constexpr const uint16_t *get_lut() noexcept {
-  return LUT.data();
-}
+HUB75_WARN_UNUSED inline constexpr const uint16_t *get_lut() noexcept { return LUT.data(); }
 
 }  // namespace hub75

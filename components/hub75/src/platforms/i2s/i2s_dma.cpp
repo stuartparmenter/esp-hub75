@@ -243,6 +243,11 @@ void I2sDma::configure_i2s_timing() {
 
 #if defined(CONFIG_IDF_TARGET_ESP32S2)
   // ESP32-S2: Use PLL_160M
+  // BCK divider MUST be set FIRST (before clkm_conf)
+  // TRM says tx_bck_div_num must not be 1, and when 0 means W=64
+  dev->sample_rate_conf.tx_bck_div_num = 2;
+  dev->sample_rate_conf.rx_bck_div_num = 2;
+
   dev->clkm_conf.clk_sel = 2;  // PLL_160M_CLK
   dev->clkm_conf.clkm_div_a = 1;
   dev->clkm_conf.clkm_div_b = 0;
@@ -252,13 +257,14 @@ void I2sDma::configure_i2s_timing() {
   dev->clkm_conf.clkm_div_num = div_num;
   dev->clkm_conf.clk_en = 1;
 
-  // BCK divider (must be >= 2 per TRM)
-  dev->sample_rate_conf.rx_bck_div_num = 2;
-  dev->sample_rate_conf.tx_bck_div_num = 2;
-
   ESP_LOGI(TAG, "ESP32-S2 I2S clock: 160MHz / %d / 4 = %d MHz", div_num, 160 / div_num / 4);
 #else
   // ESP32: Use PLL_D2 (80MHz)
+  // BCK divider MUST be set FIRST (before clkm_conf)
+  // TRM says tx_bck_div_num must not be 1, and when 0 means W=64
+  dev->sample_rate_conf.tx_bck_div_num = 2;
+  dev->sample_rate_conf.rx_bck_div_num = 2;
+
   dev->clkm_conf.clka_en = 0;     // Use PLL_D2_CLK (80MHz)
   dev->clkm_conf.clkm_div_a = 1;  // Denominator
   dev->clkm_conf.clkm_div_b = 0;  // Numerator
@@ -266,10 +272,6 @@ void I2sDma::configure_i2s_timing() {
   // Calculate divider: 80MHz / clkm_div_num / tx_bck_div_num
   unsigned int div_num = (freq > 8000000) ? 2 : 4;  // 20MHz or 10MHz
   dev->clkm_conf.clkm_div_num = div_num;
-
-  // BCK divider (must be >= 2 per TRM)
-  dev->sample_rate_conf.tx_bck_div_num = 2;
-  dev->sample_rate_conf.rx_bck_div_num = 2;
 
   ESP_LOGI(TAG, "ESP32 I2S clock: 80MHz / %d / 4 = %d MHz", div_num, 80 / div_num / 4);
 #endif
@@ -818,7 +820,7 @@ bool I2sDma::build_descriptor_chain() {
   }
 
   // Always allocate first descriptor chain (buffer 0)
-  descriptors_[0] = (lldesc_t *) heap_caps_malloc(total_descriptor_bytes, MALLOC_CAP_DMA);
+  descriptors_[0] = (lldesc_t *) heap_caps_calloc(1, total_descriptor_bytes, MALLOC_CAP_DMA);
   if (!descriptors_[0]) {
     ESP_LOGE(TAG, "Failed to allocate %zu descriptors [0] (%zu bytes) in DMA memory", descriptor_count_,
              total_descriptor_bytes);
@@ -833,7 +835,7 @@ bool I2sDma::build_descriptor_chain() {
 
   // Conditionally allocate second descriptor chain (buffer 1)
   if (config_.double_buffer) {
-    descriptors_[1] = (lldesc_t *) heap_caps_malloc(total_descriptor_bytes, MALLOC_CAP_DMA);
+    descriptors_[1] = (lldesc_t *) heap_caps_calloc(1, total_descriptor_bytes, MALLOC_CAP_DMA);
     if (!descriptors_[1]) {
       ESP_LOGE(TAG, "Failed to allocate %zu descriptors [1] (%zu bytes) in DMA memory", descriptor_count_,
                total_descriptor_bytes);

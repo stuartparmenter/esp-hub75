@@ -65,6 +65,19 @@ constexpr uint16_t RGB_MASK = RGB_UPPER_MASK | RGB_LOWER_MASK;  // 0x003F
 // Bit clear masks
 constexpr uint16_t OE_CLEAR_MASK = ~(1 << OE_BIT);
 
+// ESP32 I2S TX FIFO position adjustment
+// In 16-bit parallel mode with tx_fifo_mod=1, the FIFO outputs 16-bit words in swapped pairs.
+// The FIFO reads 32-bit words from memory and outputs them as two 16-bit chunks in reversed order.
+// This compensates by storing pixels at swapped positions in the buffer.
+// ESP32-S2 has different FIFO ordering and doesn't need this adjustment.
+#if defined(CONFIG_IDF_TARGET_ESP32)
+HUB75_CONST inline constexpr uint16_t fifo_adjust_x(uint16_t x) { return (x & 1U) ? (x - 1) : (x + 1); }
+#else
+HUB75_CONST inline constexpr uint16_t fifo_adjust_x(uint16_t x) {
+  return x;  // No adjustment for ESP32-S2
+}
+#endif
+
 // ============================================================================
 // Constructor / Destructor
 // ============================================================================
@@ -887,7 +900,7 @@ HUB75_IRAM void I2sDma::draw_pixels(uint16_t x, uint16_t y, uint16_t w, uint16_t
       auto transformed =
           transform_coordinate(px, py, needs_layout_remap_, needs_scan_remap_, layout_, scan_wiring_, panel_width_,
                                panel_height_, layout_rows_, layout_cols_, dma_width_, num_rows_);
-      px = transformed.x;
+      px = fifo_adjust_x(transformed.x);  // Apply I2S FIFO position adjustment for ESP32
       const uint16_t row = transformed.row;
       const bool is_lower = transformed.is_lower;
 

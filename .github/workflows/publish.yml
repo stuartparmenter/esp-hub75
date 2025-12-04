@@ -22,7 +22,7 @@ jobs:
       - name: Publish package
         env:
           PLATFORMIO_AUTH_TOKEN: ${{ secrets.PLATFORMIO_AUTH_TOKEN }}
-        run: pio package publish --owner stuartparmenter --non-interactive
+        run: pio package publish --owner esphome --non-interactive
 
   publish-espressif:
     name: Publish to Espressif
@@ -30,6 +30,7 @@ jobs:
     environment: espressif
     permissions:
       contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v6
       - name: Publish package
@@ -38,5 +39,4 @@ jobs:
           version: ${{ github.event.release.tag_name }}
           components: |
             esp-hub75: components/hub75
-          namespace: stuartparmenter
-          api_token: ${{ secrets.ESPRESSIF_API_TOKEN }}
+          namespace: esphome

@@ -12,9 +12,9 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v6.1.0
         with:
           python-version: '3.x'
       - name: Install platformio
@@ -32,9 +32,9 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Publish package
-        uses: espressif/upload-components-ci-action@v2
+        uses: espressif/upload-components-ci-action@2ce17d73e35473317c1419dbd4f007aacb593040 # v2.2.1
         with:
           version: ${{ github.event.release.tag_name }}
           components: |

@@ -25,14 +25,14 @@ dependencies:
     version: "^1.0.0"
 ```
 
-Browse versions on the [ESP Component Registry](https://components.espressif.com/components/stuartparmenter/esp-hub75).
+Browse versions on the [ESP Component Registry](https://components.espressif.com/components/esphome/esp-hub75).
 
 **From Git:**
 
 ```yaml
 dependencies:
   hub75:
-    git: https://github.com/stuartparmenter/esp-hub75
+    git: https://github.com/esphome-libs/esp-hub75
     path: components/hub75  # Important: point to subdirectory!
 ```
 
@@ -102,7 +102,7 @@ void app_main() {
 }
 ```
 
-**Pin Configuration:** See repository [examples/common/pins_example.h](https://github.com/stuartparmenter/esp-hub75/blob/main/examples/common/pins_example.h) for board-specific pre-configured pin layouts.
+**Pin Configuration:** See repository [examples/common/pins_example.h](https://github.com/esphome-libs/esp-hub75/blob/main/examples/common/pins_example.h) for board-specific pre-configured pin layouts.
 
 ## API Reference
 
@@ -248,9 +248,9 @@ For deep technical details, see the comprehensive documentation in `docs/`:
 
 ## License
 
-MIT License - See repository [LICENSE](https://github.com/stuartparmenter/esp-hub75/blob/main/LICENSE) file for details.
+MIT License - See repository [LICENSE](https://github.com/esphome-libs/esp-hub75/blob/main/LICENSE) file for details.
 
 ## Support
 
 For issues, examples, and detailed documentation, visit the main repository:
-https://github.com/stuartparmenter/esp-hub75
+https://github.com/esphome-libs/esp-hub75

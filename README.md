@@ -1,7 +1,7 @@
 # ESP32 HUB75 DMA Driver
 
-[![ESP Component Registry](https://components.espressif.com/components/stuartparmenter/esp-hub75/badge.svg)](https://components.espressif.com/components/stuartparmenter/esp-hub75)
-[![PlatformIO Registry](https://badges.registry.platformio.org/packages/stuartparmenter/library/esp-hub75.svg)](https://registry.platformio.org/libraries/stuartparmenter/esp-hub75)
+[![ESP Component Registry](https://components.espressif.com/components/esphome/esp-hub75/badge.svg)](https://components.espressif.com/components/esphome/esp-hub75)
+[![PlatformIO Registry](https://badges.registry.platformio.org/packages/esphome/library/esp-hub75.svg)](https://registry.platformio.org/libraries/esphome/esp-hub75)
 
 High-performance DMA-based driver for HUB75 RGB LED matrix panels, supporting ESP32, ESP32-S2, ESP32-S3, ESP32-C6, and ESP32-P4.
 
@@ -37,14 +37,14 @@ dependencies:
     version: "^0.1.0"
 ```
 
-Browse on the [ESP Component Registry](https://components.espressif.com/components/stuartparmenter/esp-hub75).
+Browse on the [ESP Component Registry](https://components.espressif.com/components/esphome/esp-hub75).
 
 Or install from git:
 
 ```yaml
 dependencies:
   hub75:
-    git: https://github.com/stuartparmenter/esp-hub75
+    git: https://github.com/esphome-libs/esp-hub75
     path: components/hub75  # Important: point to the component subdirectory!
 ```
 
@@ -54,10 +54,10 @@ Add to `platformio.ini`:
 
 ```ini
 lib_deps =
-    stuartparmenter/esp-hub75@^0.1.0
+    esphome/esp-hub75@^0.1.0
 ```
 
-Browse on the [PlatformIO Registry](https://registry.platformio.org/libraries/stuartparmenter/esp-hub75).
+Browse on the [PlatformIO Registry](https://registry.platformio.org/libraries/esphome/esp-hub75).
 
 ### Manual Installation
 
@@ -134,7 +134,7 @@ Each example includes specific instructions and pin configuration guidance.
 
 An ESPHome component is available that wraps this driver for easy integration with ESPHome projects. Supports all driver features including multi-panel layouts, shift driver initialization, and platform auto-detection.
 
-See [hub75-esphome](https://github.com/stuartparmenter/hub75-esphome) for installation and configuration.
+See [hub75-esphome](https://github.com/esphome-libs/hub75-esphome) for installation and configuration.
 
 ## Project Structure
 

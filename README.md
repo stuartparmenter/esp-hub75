@@ -134,7 +134,7 @@ Each example includes specific instructions and pin configuration guidance.
 
 An ESPHome component is available that wraps this driver for easy integration with ESPHome projects. Supports all driver features including multi-panel layouts, shift driver initialization, and platform auto-detection.
 
-See [hub75-esphome](https://github.com/esphome-libs/hub75-esphome) for installation and configuration.
+See [hub75-esphome](https://github.com/stuartparmenter/hub75-esphome) for installation and configuration.
 
 ## Project Structure
 

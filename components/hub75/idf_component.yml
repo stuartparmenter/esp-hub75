@@ -4,13 +4,13 @@ license: "MIT"
 maintainers:
   - Stuart Parmenter <pavlov@pavlov.net>
 
-url: https://github.com/stuartparmenter/esp-hub75
-repository: https://github.com/stuartparmenter/esp-hub75.git
+url: https://github.com/esphome-libs/esp-hub75
+repository: https://github.com/esphome-libs/esp-hub75.git
 repository_info:
   path: components/hub75
-documentation: https://github.com/stuartparmenter/esp-hub75/blob/main/README.md
-issues: https://github.com/stuartparmenter/esp-hub75/issues
-discussion: https://github.com/stuartparmenter/esp-hub75/discussions
+documentation: https://github.com/esphome-libs/esp-hub75/blob/main/README.md
+issues: https://github.com/esphome-libs/esp-hub75/issues
+discussion: https://github.com/esphome-libs/esp-hub75/discussions
 
 targets:
   - esp32
